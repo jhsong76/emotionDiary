@@ -18,6 +18,9 @@ const Edit = () => {
         <button onClick={() => setSearchParams({who: "songjuhee"})}>QS 바꾸기</button>
         <button onClick={() => {
             navigate("/home");}}>HOME으로 가기</button>
+        <button onClick={() => {
+            navigate(-1);
+        }}>뒤로가기</button>
     </div>
     );
 }
