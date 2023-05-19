@@ -1,5 +1,5 @@
 import {useNavigate} from "react-router-dom";
-import { useState, useRef, useContext, useEffect } from "react";
+import { useState, useRef, useContext, useEffect, useCallback } from "react";
 
 import MyHeader from "./MyHeader";
 import MyButton from "./MyButton";
@@ -16,9 +16,9 @@ const DiaryEditor = ({isEdit, originData}) => {
     const [date, setDate] = useState(getStringDate(new Date()));
 
     const {onCreate, onEdit, onRemove} = useContext(DiaryDispatchContext);
-    const handleClickEmote = (emotion) => {
+    const handleClickEmote = useCallback((emotion) => {
         setEmotion(emotion);
-    };
+    }, []);
     const navigate = useNavigate();
 
     const handleSubmit = () => {
@@ -83,7 +83,8 @@ const DiaryEditor = ({isEdit, originData}) => {
                     <h4>오늘의 감정</h4>
                     <div className="input_box emotion_list_wrapper">
                         {emotionList.map((it) => (
-                            <EmotionItem key={it.emotion_id}{...it}
+                            <EmotionItem 
+                            key={it.emotion_id}{...it}
                             onClick={handleClickEmote}
                             isSelected={it.emotion_id === emotion}/>
                         ))}

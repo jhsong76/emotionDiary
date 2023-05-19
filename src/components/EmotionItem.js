@@ -1,4 +1,12 @@
-const EmotionItem = ({emotion_id, emotion_img, emotion_descript, onClick, isSelected,}) => {
+import React from "react";
+
+const EmotionItem = ({
+    emotion_id, 
+    emotion_img, 
+    emotion_descript, 
+    onClick, 
+    isSelected,
+}) => {
     return (
     <div onClick={()=> onClick(emotion_id)} className={["EmotionItem",
     isSelected ? `EmotionItem_on_${emotion_id}` : `EmotionItem_off`,
@@ -10,4 +18,4 @@ const EmotionItem = ({emotion_id, emotion_img, emotion_descript, onClick, isSele
     );
 }
 
-export default EmotionItem;
+export default React.memo(EmotionItem);
